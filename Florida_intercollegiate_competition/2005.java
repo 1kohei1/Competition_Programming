@@ -2,6 +2,7 @@ mport java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+// https://www.seminolestate.edu/computers/competition/samples/2005
 public class Competition_2005 {
 
 	public static void main(String[] args) {
