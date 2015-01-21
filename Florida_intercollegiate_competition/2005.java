@@ -96,12 +96,13 @@ public class Competition_2005 {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.print("Enter sets of integer: ");
-		String numbers = input.nextLine();
-		numbers = numbers.substring(0, numbers.length() - 2);
-		ArrayList<String> originalList = new ArrayList<String> (Arrays.asList(numbers.split(" ")));
 		ArrayList<Integer> originalNumbers = new ArrayList<Integer> ();
-		for (int i = 0; i < originalList.size(); i++) {
-			originalNumbers.add(new Integer(originalList.get(i)));
+		while(input.hasNext()) {
+			int num = input.nextInt();
+			if (num == -1) {
+				break;
+			}
+			originalNumbers.add(num);
 		}
 		ArrayList<Integer> cleanNumbers = new ArrayList<Integer> ();
 		ArrayList<Integer> duplicateDigit = new ArrayList<Integer> ();
