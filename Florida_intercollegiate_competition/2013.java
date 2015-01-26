@@ -6,11 +6,7 @@ import java.util.ArrayList;
 public class Competition_2013 {
 
 	public static void main(String[] args) {
-//		double d = 2.22234;
-//		int a = ((int) d * 100);
-//		double b = a / 100;
-//		System.out.println(b);
-		SnailInTheWall();
+		matchingSpecialCharacters2();
 	}
 	
 	public static void MatchingSpecialCharacters() {
@@ -48,6 +44,75 @@ public class Competition_2013 {
 		} else {
 			System.out.println("There are missing special characters.");
 		}	
+	}
+	
+	public static void matchingSpecialCharacters2() {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter characters: ");
+		String userString = input.nextLine();
+		String cleanString = "";
+		
+		// Delete any other characters
+		for (int i = 0; i < userString.length(); i++) {
+			String oneLetter = userString.substring(i, i + 1);
+			
+			if (oneLetter.equals("(") || 
+				oneLetter.equals(")") || 
+				oneLetter.equals("{") || 
+				oneLetter.equals("}") || 
+				oneLetter.equals("[") || 
+				oneLetter.equals("]")) 
+			{
+				cleanString += oneLetter;
+			}
+		}
+		
+		// Check if there are matching special characters
+		boolean didMatch = true;
+		while(cleanString.length() > 0) {
+			String oneLetter = cleanString.substring(0, 1);
+			String matchingLetter = "";
+			
+			switch(oneLetter) {
+			case "(":
+				matchingLetter = ")";
+				break;
+			case ")":
+				matchingLetter = "(";
+				break;
+			case "{":
+				matchingLetter = "}";
+				break;
+			case "}":
+				matchingLetter = "{";
+				break;
+			case "[":
+				matchingLetter = "]";
+				break;
+			case "]":
+				matchingLetter = "[";
+				break;
+			}
+			
+			String leftString = cleanString.substring(1);
+			if (leftString.contains(matchingLetter)) {
+				// there is a matching character
+				// Delete matched character
+				int matchedIndex = cleanString.indexOf(matchingLetter);
+				leftString = leftString.substring(0, matchedIndex - 1) + leftString.substring(matchedIndex);
+			} else {
+				// there is missing character
+				didMatch = false;
+			}
+			cleanString = leftString;
+		}
+		
+		if (didMatch) {
+			System.out.println("All special characters have a match.");
+		} else {
+			System.out.println("Not all special characters have a match.");
+		}
 	}
 	
 	public static void MovingAverages() {
@@ -223,4 +288,3 @@ public class Competition_2013 {
 		}
 	}
 }
-
